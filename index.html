@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập Thánh Kinh Hè 2026 - Lớp Nhi Đồng</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Baloo 2 for playful kid-friendly look -->
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #f0fdf4; /* Light friendly pastel green */
+        }
+        .heading-font {
+            font-family: 'Baloo 2', sans-serif;
+        }
+        /* Card Flip Style - Adjusted for larger font text with dynamic min-heights */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card-flipped {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bbf7d0;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #86efac;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased text-slate-800 text-lg">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white border-b border-green-200 shadow-sm sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                <div class="bg-amber-100 text-amber-500 p-3 rounded-2xl shadow-inner">
+                    <i data-lucide="book-open" class="w-8 h-8"></i>
+                </div>
+                <div>
+                    <h1 class="heading-font text-2xl md:text-3xl font-extrabold text-green-700 leading-none">THÁNH KINH HÈ 2026</h1>
+                    <p class="text-xs md:text-sm text-amber-600 font-bold tracking-wider mt-1">LỚP NHI ĐỒNG • ĐỀ ÔN TẬP CỰC TO</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Nav Links -->
+            <nav class="hidden lg:flex items-center space-x-3">
+                <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-5 py-3 rounded-2xl text-base font-extrabold text-green-700 bg-green-50 transition-all flex items-center gap-1.5">
+                    <i data-lucide="home" class="w-5 h-5"></i> Trang chủ
+                </button>
+                <button onclick="navigateTo('lesson1')" id="nav-lesson1" class="nav-btn px-4 py-3 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 transition-all">Bài 1</button>
+                <button onclick="navigateTo('lesson2')" id="nav-lesson2" class="nav-btn px-4 py-3 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 transition-all">Bài 2</button>
+                <button onclick="navigateTo('lesson3')" id="nav-lesson3" class="nav-btn px-4 py-3 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 transition-all">Bài 3</button>
+                <button onclick="navigateTo('lesson4')" id="nav-lesson4" class="nav-btn px-4 py-3 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 transition-all">Bài 4</button>
+                <button onclick="navigateTo('lesson5')" id="nav-lesson5" class="nav-btn px-4 py-3 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 transition-all">Bài 5</button>
+                <button onclick="navigateTo('verses')" id="nav-verses" class="nav-btn px-5 py-3 rounded-2xl text-base font-extrabold text-amber-600 hover:bg-amber-50 transition-all flex items-center gap-1.5">
+                    <i data-lucide="bookmark" class="w-5 h-5"></i> Câu gốc
+                </button>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Sound Toggle -->
+                <button onclick="toggleSound()" id="sound-btn" class="p-3 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors" title="Bật/Tắt âm thanh">
+                    <i id="sound-icon" data-lucide="volume-2" class="w-6 h-6"></i>
+                </button>
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-3 rounded-xl bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-3 shadow-inner">
+            <button onclick="navigateTo('home'); toggleMobileMenu();" class="w-full text-left px-5 py-3.5 rounded-2xl text-base font-extrabold text-green-700 bg-green-50 flex items-center gap-2">
+                <i data-lucide="home" class="w-5 h-5"></i> Trang chủ
+            </button>
+            <div class="grid grid-cols-2 gap-3">
+                <button onclick="navigateTo('lesson1'); toggleMobileMenu();" class="text-center py-3 px-2 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 border border-slate-200">Bài 1</button>
+                <button onclick="navigateTo('lesson2'); toggleMobileMenu();" class="text-center py-3 px-2 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 border border-slate-200">Bài 2</button>
+                <button onclick="navigateTo('lesson3'); toggleMobileMenu();" class="text-center py-3 px-2 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 border border-slate-200">Bài 3</button>
+                <button onclick="navigateTo('lesson4'); toggleMobileMenu();" class="text-center py-3 px-2 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 border border-slate-200">Bài 4</button>
+                <button onclick="navigateTo('lesson5'); toggleMobileMenu();" class="text-center py-3 px-2 rounded-2xl text-base font-bold text-gray-700 hover:bg-slate-50 border border-slate-200">Bài 5</button>
+                <button onclick="navigateTo('verses'); toggleMobileMenu();" class="text-center py-3 px-2 rounded-2xl text-base font-extrabold text-amber-600 bg-amber-50 hover:bg-amber-100 flex items-center justify-center gap-1.5 border border-amber-200">
+                    <i data-lucide="bookmark" class="w-5 h-5"></i> Câu gốc
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 md:py-12">
+        
+        <!-- ================= HOME SECTION ================= -->
+        <section id="section-home" class="space-y-10 animate-fade-in">
+            <!-- Hero Card -->
+            <div class="relative bg-gradient-to-r from-green-400 via-emerald-400 to-sky-400 rounded-[3rem] p-8 md:p-14 text-white overflow-hidden shadow-2xl shadow-green-200">
+                <!-- Abstract kid shapes in background -->
+                <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-white/10 rounded-full blur-2xl"></div>
+                <div class="absolute -left-10 -top-10 w-64 h-64 bg-yellow-300/20 rounded-full blur-xl"></div>
+                
+                <div class="relative z-10 max-w-3xl space-y-6">
+                    <span class="bg-white/20 backdrop-blur-md text-yellow-100 text-xs md:text-sm font-extrabold px-4 py-2 rounded-full uppercase tracking-widest inline-block">Cùng Bé Học Lời Chúa</span>
+                    <h2 class="heading-font text-4xl md:text-6xl font-black leading-tight drop-shadow-lg">
+                        Ôn Thi Thánh Kinh Hè 2026 Thật Vui Vẻ!
+                    </h2>
+                    <p class="text-lg md:text-xl font-bold text-white/90 leading-loose">
+                        Chào mừng các bạn nhỏ lớp Nhi Đồng! Đây là góc ôn tập câu hỏi Thánh Kinh Hè đặc sắc nhất, chữ siêu to, đầy đủ câu hỏi và đáp án từ bài 1 đến bài 5 cùng nhiều trò chơi tương tác vô cùng sống động.
+                    </p>
+                    <div class="pt-6 flex flex-wrap gap-4">
+                        <button onclick="navigateTo('lesson1')" class="bg-yellow-300 hover:bg-yellow-400 text-amber-950 font-black px-8 py-4 rounded-2xl shadow-lg transform active:scale-95 transition-all text-base md:text-lg flex items-center gap-3">
+                            <i data-lucide="play" class="w-6 h-6 fill-current"></i> Bắt đầu ôn ngay!
+                        </button>
+                        <button onclick="navigateTo('verses')" class="bg-white/20 hover:bg-white/30 text-white font-black px-8 py-4 rounded-2xl border-2 border-white/40 backdrop-blur-sm transition-all text-base md:text-lg flex items-center gap-2">
+                            <i data-lucide="bookmark" class="w-6 h-6"></i> Xem Câu gốc
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Stats / Progress -->
+            <div class="bg-white rounded-3xl p-8 border-2 border-green-100 shadow-sm space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                    <div class="space-y-1">
+                        <h3 class="heading-font text-2xl md:text-3xl font-extrabold text-slate-800">Tiến trình ôn tập của em</h3>
+                        <p class="text-sm md:text-base text-slate-500 font-bold">Bé hãy nhấn vào nút "Đã nhớ" ở mỗi câu hỏi để hoàn thành 100% nhé!</p>
+                    </div>
+                    <button onclick="confirmResetProgress()" class="text-sm font-extrabold text-red-500 hover:text-red-600 bg-red-50 hover:bg-red-100 px-5 py-2.5 rounded-2xl transition-all self-start flex items-center gap-2 border border-red-100">
+                        <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Học lại từ đầu
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4" id="progress-bars-container">
+                    <!-- Dynamic Progress Cards -->
+                </div>
+                
+                <!-- Overall Progress Bar -->
+                <div class="space-y-3 pt-4 border-t border-slate-100">
+                    <div class="flex justify-between text-sm md:text-base font-black text-slate-700">
+                        <span>TỔNG CỘNG TIẾN TRÌNH ÔN THI</span>
+                        <span id="overall-progress-text" class="text-green-700">0/43 Câu (0%)</span>
+                    </div>
+                    <div class="w-full bg-slate-100 h-6 rounded-full overflow-hidden p-1 border border-slate-200">
+                        <div id="overall-progress-bar" class="bg-gradient-to-r from-green-500 to-emerald-500 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lesson Navigator Grid -->
+            <div class="space-y-6">
+                <h3 class="heading-font text-3xl font-black text-green-800 flex items-center gap-3">
+                    <i data-lucide="compass" class="w-8 h-8 text-green-600"></i> Các Bài Học Trong Đề Cương
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Lesson 1 Card -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-green-300 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col justify-between group min-h-[20rem]">
+                        <div class="space-y-4">
+                            <div class="w-14 h-14 rounded-2xl bg-rose-100 text-rose-500 flex items-center justify-center font-black text-2xl group-hover:scale-110 transition-transform">
+                                B1
+                            </div>
+                            <h4 class="heading-font text-xl md:text-2xl font-bold text-slate-800 group-hover:text-green-700 transition-colors leading-snug">Bài 1: Nhờ Chúa Jêsus, Em Dâng Của Lễ</h4>
+                            <p class="text-sm md:text-base text-slate-500 font-semibold leading-relaxed">Con người xa cách Đức Chúa Trời bởi tội lỗi. Chúa Jêsus là chiếc cầu trung gian duy nhất đưa ta về với Ngài.</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-extrabold bg-rose-50 text-rose-600 px-3 py-1.5 rounded-xl">8 câu hỏi ôn tập</span>
+                        </div>
+                        <div class="pt-6 flex gap-3">
+                            <button onclick="navigateTo('lesson1')" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-extrabold text-sm md:text-base py-3 rounded-2xl transition-all shadow-md">Học bài này</button>
+                            <button onclick="startSpecificWidget('bridge')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-3 rounded-2xl transition-colors flex items-center justify-center" title="Trò chơi cây cầu">
+                                <i data-lucide="gamepad-2" class="w-6 h-6 text-indigo-600"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 2 Card -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-green-300 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col justify-between group min-h-[20rem]">
+                        <div class="space-y-4">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-500 flex items-center justify-center font-black text-2xl group-hover:scale-110 transition-transform">
+                                B2
+                            </div>
+                            <h4 class="heading-font text-xl md:text-2xl font-bold text-slate-800 group-hover:text-green-700 transition-colors leading-snug">Bài 2: Của Lễ Ca Ngợi</h4>
+                            <p class="text-sm md:text-base text-slate-500 font-semibold leading-relaxed">Học cách tôn vinh Chúa qua sự ca ngợi ra từ môi miệng trẻ thơ, và ghi nhớ thứ tự Bàn Tay Cầu Nguyện của em.</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-extrabold bg-amber-50 text-amber-600 px-3 py-1.5 rounded-xl">6 câu hỏi ôn tập</span>
+                        </div>
+                        <div class="pt-6 flex gap-3">
+                            <button onclick="navigateTo('lesson2')" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-extrabold text-sm md:text-base py-3 rounded-2xl transition-all shadow-md">Học bài này</button>
+                            <button onclick="startSpecificWidget('hand')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-3 rounded-2xl transition-colors flex items-center justify-center" title="Trò chơi bàn tay cầu nguyện">
+                                <i data-lucide="gamepad-2" class="w-6 h-6 text-indigo-600"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 3 Card -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-green-300 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col justify-between group min-h-[20rem]">
+                        <div class="space-y-4">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-500 flex items-center justify-center font-black text-2xl group-hover:scale-110 transition-transform">
+                                B3
+                            </div>
+                            <h4 class="heading-font text-xl md:text-2xl font-bold text-slate-800 group-hover:text-green-700 transition-colors leading-snug">Bài 3: Của Lễ Dâng Hiến</h4>
+                            <p class="text-sm md:text-base text-slate-500 font-semibold leading-relaxed">Câu chuyện về tấm lòng dâng hiến vĩ đại của bà góa nghèo với hai đồng tiền nhỏ. Chúa xem trọng tấm lòng chân thành.</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-extrabold bg-emerald-50 text-emerald-600 px-3 py-1.5 rounded-xl">11 câu hỏi ôn tập</span>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="navigateTo('lesson3')" class="w-full bg-green-500 hover:bg-green-600 text-white font-extrabold text-sm md:text-base py-3 rounded-2xl transition-all shadow-md">Học bài này</button>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 4 Card -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-green-300 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col justify-between group min-h-[20rem]">
+                        <div class="space-y-4">
+                            <div class="w-14 h-14 rounded-2xl bg-indigo-100 text-indigo-500 flex items-center justify-center font-black text-2xl group-hover:scale-110 transition-transform">
+                                B4
+                            </div>
+                            <h4 class="heading-font text-xl md:text-2xl font-bold text-slate-800 group-hover:text-green-700 transition-colors leading-snug">Bài 4: Của Lễ Giúp Đỡ</h4>
+                            <p class="text-sm md:text-base text-slate-500 font-semibold leading-relaxed">Dâng của lễ lên Chúa không chỉ là lời hát mà còn qua đôi chân, đôi tay làm việc tốt, giúp đỡ người nghèo như bà Ta-bi-tha.</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-extrabold bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-xl">9 câu hỏi ôn tập</span>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="navigateTo('lesson4')" class="w-full bg-green-500 hover:bg-green-600 text-white font-extrabold text-sm md:text-base py-3 rounded-2xl transition-all shadow-md">Học bài này</button>
+                        </div>
+                    </div>
+
+                    <!-- Lesson 5 Card -->
+                    <div class="bg-white rounded-3xl p-6 border border-slate-200 hover:border-green-300 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col justify-between group min-h-[20rem]">
+                        <div class="space-y-4">
+                            <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-500 flex items-center justify-center font-black text-2xl group-hover:scale-110 transition-transform">
+                                B5
+                            </div>
+                            <h4 class="heading-font text-xl md:text-2xl font-bold text-slate-800 group-hover:text-green-700 transition-colors leading-snug">Bài 5: Của Lễ Cứu Trợ</h4>
+                            <p class="text-sm md:text-base text-slate-500 font-semibold leading-relaxed">Tinh thần sẵn lòng sẻ chia, quyên góp cứu trợ đồng bào trong nạn đói kém của các môn đồ tại Hội thánh đa sắc dân An-ti-ốt.</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-extrabold bg-sky-50 text-sky-600 px-3 py-1.5 rounded-xl">11 câu hỏi ôn tập</span>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="navigateTo('lesson5')" class="w-full bg-green-500 hover:bg-green-600 text-white font-extrabold text-sm md:text-base py-3 rounded-2xl transition-all shadow-md">Học bài này</button>
+                        </div>
+                    </div>
+
+                    <!-- All Verses Card -->
+                    <div class="bg-amber-50 rounded-3xl p-6 border-2 border-amber-200 hover:border-amber-400 shadow-md hover:shadow-xl transition-all hover:-translate-y-1 flex flex-col justify-between group min-h-[20rem]">
+                        <div class="space-y-4">
+                            <div class="w-14 h-14 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center font-black text-2xl group-hover:scale-110 transition-transform">
+                                <i data-lucide="bookmark-check" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="heading-font text-xl md:text-2xl font-bold text-amber-800 transition-colors leading-snug">Câu Gốc Ghi Nhớ</h4>
+                            <p class="text-sm md:text-base text-amber-700/85 font-semibold leading-relaxed">Tổng hợp những câu Kinh Thánh then chốt trong đề thi. Bông trái dâng lên cho Chúa bằng việc học lời Ngài.</p>
+                            <span class="inline-flex items-center gap-1.5 text-xs md:text-sm font-extrabold bg-amber-100 text-amber-800 px-3 py-1.5 rounded-xl">Đầy đủ 3 câu gốc</span>
+                        </div>
+                        <div class="pt-6">
+                            <button onclick="navigateTo('verses')" class="w-full bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-sm md:text-base py-3 rounded-2xl transition-all shadow-md">Xem toàn bộ câu gốc</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= LESSON/STUDY SECTION ================= -->
+        <section id="section-lesson" class="hidden space-y-8">
+            <!-- Back to Home -->
+            <div>
+                <button onclick="navigateTo('home')" class="inline-flex items-center gap-2.5 text-sm md:text-base font-extrabold text-green-700 hover:text-green-800 bg-green-50 hover:bg-green-100 px-6 py-3 rounded-2xl transition-all border border-green-100">
+                    <i data-lucide="arrow-left" class="w-5 h-5"></i> Trở về Trang chủ
+                </button>
+            </div>
+
+            <!-- Lesson Header Info -->
+            <div id="lesson-intro-card" class="bg-white rounded-[2.5rem] p-8 border-2 border-slate-100 shadow-md flex flex-col md:flex-row justify-between gap-8">
+                <div class="space-y-4 flex-grow md:max-w-3xl">
+                    <h2 id="lesson-title" class="heading-font text-3xl md:text-4xl font-black text-slate-800">Tên bài học</h2>
+                    <p id="lesson-subtitle" class="text-sm font-extrabold text-slate-400 tracking-wider uppercase">Phụ đề bài học</p>
+                    <div id="lesson-verse-box" class="bg-amber-50/70 border-2 border-amber-100 p-6 rounded-3xl relative overflow-hidden">
+                        <div class="absolute right-3 -bottom-3 opacity-5 text-amber-900"><i data-lucide="quote" class="w-24 h-24"></i></div>
+                        <p id="lesson-verse-text" class="text-base md:text-xl italic text-amber-950 font-extrabold leading-loose">“Nội dung câu Kinh Thánh gốc”</p>
+                        <p id="lesson-verse-ref" class="text-xs md:text-sm font-black text-amber-600 mt-3 text-right">— Địa chỉ Kinh Thánh</p>
+                    </div>
+                </div>
+                <!-- Mini Stats / Controls -->
+                <div class="md:w-72 bg-slate-50 p-6 rounded-3xl border border-slate-200 flex flex-col justify-between space-y-4">
+                    <div>
+                        <h4 class="text-xs md:text-sm font-black text-slate-500 uppercase tracking-widest">Tiến độ bài này</h4>
+                        <div class="flex items-baseline gap-2 mt-2">
+                            <span id="lesson-score-text" class="text-4xl font-black text-green-600">0/0</span>
+                            <span class="text-sm text-slate-400 font-bold">câu đã nhớ</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden">
+                        <div id="lesson-progress-bar" class="bg-green-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                    </div>
+                    <!-- Audio Reader -->
+                    <button id="tts-lesson-btn" onclick="speakCurrentVerse()" class="w-full bg-white hover:bg-slate-100 border-2 border-slate-200 text-slate-700 py-3.5 rounded-2xl text-sm md:text-base font-extrabold transition-all flex items-center justify-center gap-2 shadow-sm">
+                        <i data-lucide="volume-2" class="w-5 h-5 text-green-600"></i> Đọc lớn câu gốc
+                    </button>
+                </div>
+            </div>
+
+            <!-- TAB CONTROLLERS (Study Modes) -->
+            <div class="flex flex-wrap border-b border-slate-200 gap-2">
+                <button onclick="switchStudyMode('list')" id="tab-list" class="flex-1 md:flex-none px-6 py-4 font-extrabold text-base rounded-t-2xl border-t border-x border-transparent transition-all flex items-center justify-center gap-2 text-gray-500 hover:text-slate-800">
+                    <i data-lucide="list-todo" class="w-5 h-5"></i> Danh sách (Hỏi & Đáp)
+                </button>
+                <button onclick="switchStudyMode('cards')" id="tab-cards" class="flex-1 md:flex-none px-6 py-4 font-extrabold text-base rounded-t-2xl border-t border-x border-transparent transition-all flex items-center justify-center gap-2 text-gray-500 hover:text-slate-800">
+                    <i data-lucide="layers" class="w-5 h-5"></i> Thẻ Ghi Nhớ (Flashcard)
+                </button>
+                <button onclick="switchStudyMode('quiz')" id="tab-quiz" class="flex-1 md:flex-none px-6 py-4 font-extrabold text-base rounded-t-2xl border-t border-x border-transparent transition-all flex items-center justify-center gap-2 text-gray-500 hover:text-slate-800">
+                    <i data-lucide="trophy" class="w-5 h-5"></i> Trò Chơi Thử Thách
+                </button>
+                <button onclick="switchStudyMode('widget')" id="tab-widget" class="hidden md:flex-none px-6 py-4 font-extrabold text-base rounded-t-2xl border-t border-x border-transparent transition-all flex items-center justify-center gap-2 text-indigo-600 hover:text-indigo-800">
+                    <i data-lucide="gamepad-2" class="w-5 h-5"></i> Mô Hình Tương Tác
+                </button>
+            </div>
+
+            <!-- ================= MODE 1: LIST MODE ================= -->
+            <div id="mode-list" class="mode-container space-y-6">
+                <!-- Search & Controls -->
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+                    <div class="relative w-full sm:max-w-md">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-slate-400">
+                            <i data-lucide="search" class="w-5 h-5"></i>
+                        </span>
+                        <input type="text" id="list-search" oninput="filterQuestions()" placeholder="Tìm kiếm câu hỏi nhanh..." class="w-full bg-white text-slate-800 pl-11 pr-5 py-3 rounded-2xl text-base border-2 border-slate-200 focus:outline-none focus:border-green-500 transition-colors shadow-sm">
+                    </div>
+                    <div class="flex items-center gap-3 w-full sm:w-auto">
+                        <button onclick="toggleAllAnswers(true)" class="flex-1 sm:flex-none bg-white hover:bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-sm font-extrabold transition-all border-2 border-slate-200 shadow-sm">Hiện tất cả đáp án</button>
+                        <button onclick="toggleAllAnswers(false)" class="flex-1 sm:flex-none bg-white hover:bg-slate-50 text-slate-700 px-5 py-3 rounded-2xl text-sm font-extrabold transition-all border-2 border-slate-200 shadow-sm">Ẩn tất cả</button>
+                    </div>
+                </div>
+
+                <!-- Questions List (Dynamic) -->
+                <div id="questions-list" class="space-y-6">
+                    <!-- Dynamic List Cards -->
+                </div>
+            </div>
+
+            <!-- ================= MODE 2: CARDS MODE ================= -->
+            <div id="mode-cards" class="mode-container hidden space-y-6">
+                <!-- Flashcard Widget -->
+                <div class="max-w-2xl mx-auto flex flex-col items-center space-y-6">
+                    <p class="text-sm md:text-base text-slate-500 font-bold uppercase tracking-wider text-center">Mẹo: Chạm vào thẻ hoặc nút màu vàng để lật xem đáp án!</p>
+                    
+                    <!-- Fixed height layout solves Safari / Sandbox iframe absolute collapsing -->
+                    <div class="perspective-1000 w-full h-[30rem] md:h-[32rem] relative cursor-pointer" onclick="flipCard()">
+                        <div id="flashcard-inner" class="card-inner absolute inset-0 w-full h-full rounded-[2.5rem] shadow-xl border-2 border-slate-100">
+                            
+                            <!-- Card Front (Question) -->
+                            <div class="card-front absolute inset-0 bg-white rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between overflow-y-auto">
+                                <div class="flex justify-between items-center text-sm font-black text-rose-500">
+                                    <span id="card-front-number">CÂU 1</span>
+                                    <span class="bg-rose-50 px-3 py-1.5 rounded-xl text-xs">CÂU HỎI ÔN TẬP</span>
+                                </div>
+                                <div class="flex-grow flex items-center justify-center text-center py-6">
+                                    <p id="card-front-text" class="text-lg md:text-2xl font-extrabold text-slate-800 leading-loose">Đang tải câu hỏi...</p>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-slate-400 font-bold">
+                                    <span class="flex items-center gap-1.5"><i data-lucide="rotate-3d" class="w-5 h-5 text-slate-400"></i> Chạm để xem đáp án</span>
+                                    <i data-lucide="arrow-right-left" class="w-5 h-5 text-slate-400"></i>
+                                </div>
+                            </div>
+                            
+                            <!-- Card Back (Answer) -->
+                            <div class="card-back absolute inset-0 bg-gradient-to-br from-green-500 to-emerald-600 rounded-[2.5rem] p-8 md:p-10 flex flex-col justify-between text-white overflow-y-auto">
+                                <div class="flex justify-between items-center text-sm font-black text-green-100">
+                                    <span id="card-back-number">CÂU 1</span>
+                                    <span class="bg-white/20 px-3 py-1.5 rounded-xl uppercase tracking-wider text-xs font-black">ĐÁP ÁN CHUẨN</span>
+                                </div>
+                                <div class="flex-grow flex items-center justify-center text-center py-6">
+                                    <p id="card-back-text" class="text-base md:text-xl font-bold text-white leading-loose whitespace-pre-line">Đang tải đáp án...</p>
+                                </div>
+                                <div class="flex items-center justify-between text-sm text-green-100 font-bold">
+                                    <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-5 h-5"></i> Chạm để về câu hỏi</span>
+                                    <i data-lucide="smile" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Slide Controllers -->
+                    <div class="flex items-center justify-between w-full pt-4">
+                        <button onclick="changeCard(-1)" class="bg-white hover:bg-slate-50 border-2 border-slate-200 text-slate-700 p-4 rounded-2xl active:scale-95 transition-all shadow-md">
+                            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+                        </button>
+                        <div class="flex flex-col items-center">
+                            <span id="card-indicator" class="text-base md:text-lg font-black text-slate-700">1 / 8</span>
+                            <!-- Audio Speaker for current card question -->
+                            <button onclick="speakCurrentCard()" class="text-sm font-extrabold text-green-700 bg-green-50 hover:bg-green-100 px-4 py-2 rounded-xl mt-2 transition-all flex items-center gap-1.5 border border-green-100">
+                                <i data-lucide="volume-2" class="w-4 h-4"></i> Đọc to câu hỏi
+                            </button>
+                        </div>
+                        <button onclick="changeCard(1)" class="bg-white hover:bg-slate-50 border-2 border-slate-200 text-slate-700 p-4 rounded-2xl active:scale-95 transition-all shadow-md">
+                            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+
+                    <!-- Flip button standalone -->
+                    <button onclick="event.stopPropagation(); flipCard();" class="bg-yellow-300 hover:bg-yellow-400 text-amber-950 px-8 py-4 rounded-2xl font-black text-base md:text-lg transition-all flex items-center gap-3 shadow-md">
+                        <i data-lucide="rotate-3d" class="w-5 h-5"></i> Lật thẻ xem đáp án
+                    </button>
+                </div>
+            </div>
+
+            <!-- ================= MODE 3: QUIZ MODE ================= -->
+            <div id="mode-quiz" class="mode-container hidden max-w-2xl mx-auto space-y-6">
+                <!-- Quiz Screen Layout -->
+                <div id="quiz-intro" class="bg-white rounded-[2.5rem] p-8 border-2 border-slate-100 shadow-md text-center space-y-6">
+                    <div class="w-20 h-20 bg-amber-100 text-amber-500 rounded-2xl flex items-center justify-center mx-auto shadow-inner">
+                        <i data-lucide="trophy" class="w-10 h-10"></i>
+                    </div>
+                    <h3 class="heading-font text-3xl font-black text-slate-800">Thử Thách Tự Đánh Giá</h3>
+                    <p class="text-base md:text-lg text-slate-500 max-w-md mx-auto leading-relaxed">
+                        Chế độ này giúp em kiểm tra trí nhớ. Em sẽ nhìn thấy câu hỏi, suy nghĩ câu trả lời, lật xem đáp án rồi tự chọn xem mình đã nhớ đúng chưa nhé!
+                    </p>
+                    <button onclick="startQuizGame()" class="bg-green-500 hover:bg-green-600 text-white font-black px-8 py-4 rounded-2xl shadow-lg transition-all flex items-center gap-2.5 mx-auto text-base md:text-lg">
+                        <i data-lucide="play" class="w-5 h-5 fill-current"></i> Bắt đầu thử thách!
+                    </button>
+                </div>
+
+                <div id="quiz-gameplay" class="hidden bg-white rounded-[2.5rem] p-8 border-2 border-slate-100 shadow-xl space-y-6">
+                    <!-- Progress and count -->
+                    <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+                        <div>
+                            <span class="text-sm font-black text-rose-500 bg-rose-50 px-3.5 py-1.5 rounded-xl" id="quiz-question-lbl">CÂU 1</span>
+                        </div>
+                        <span class="text-sm font-black text-slate-500" id="quiz-score-lbl">Đã nhớ: 0 / 0</span>
+                    </div>
+
+                    <!-- Question text display -->
+                    <div class="text-center space-y-4 py-6">
+                        <p id="quiz-question-text" class="text-xl md:text-2xl font-black text-slate-800 leading-loose">Nội dung câu hỏi ôn tập?</p>
+                    </div>
+
+                    <!-- Answer reveal layout with safe spacing -->
+                    <div id="quiz-answer-zone" class="hidden bg-slate-50 p-6 rounded-3xl border-2 border-slate-200 text-center animate-fade-in space-y-4">
+                        <span class="text-xs font-black tracking-widest text-green-700 bg-green-100 px-3 py-1 rounded-xl uppercase">Đáp án chuẩn</span>
+                        <p id="quiz-answer-text" class="text-base md:text-xl font-bold text-slate-700 leading-loose whitespace-pre-line">Nội dung đáp án bài học.</p>
+                    </div>
+
+                    <!-- Options & Action button -->
+                    <div class="pt-6 border-t border-slate-100 flex flex-col items-center gap-4">
+                        <!-- Reveal answer button -->
+                        <button id="quiz-reveal-btn" onclick="revealQuizAnswer()" class="w-full bg-yellow-300 hover:bg-yellow-400 text-amber-950 font-black py-4 rounded-2xl transition-all shadow-md flex items-center justify-center gap-2 text-base md:text-lg">
+                            <i data-lucide="eye" class="w-5 h-5"></i> Lật xem đáp án
+                        </button>
+                        
+                        <!-- Pass/Fail interactive buttons -->
+                        <div id="quiz-eval-buttons" class="hidden w-full grid grid-cols-2 gap-4">
+                            <button onclick="answerQuizEvaluated(false)" class="bg-red-50 hover:bg-red-100 text-red-600 font-extrabold py-4 rounded-2xl border-2 border-red-200 transition-all flex items-center justify-center gap-2 text-base">
+                                <i data-lucide="x" class="w-5 h-5"></i> Em chưa nhớ
+                            </button>
+                            <button onclick="answerQuizEvaluated(true)" class="bg-green-500 hover:bg-green-600 text-white font-extrabold py-4 rounded-2xl transition-all flex items-center justify-center gap-2 text-base shadow-lg shadow-green-100">
+                                <i data-lucide="smile" class="w-5 h-5"></i> Em đã nhớ đúng!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quiz Completion -->
+                <div id="quiz-complete" class="hidden bg-white rounded-[2.5rem] p-10 border-2 border-slate-100 shadow-xl text-center space-y-6 animate-fade-in">
+                    <div class="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto shadow-inner">
+                        <i data-lucide="award" class="w-12 h-12 animate-bounce"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="heading-font text-3xl md:text-4xl font-black text-slate-800">Tuyệt vời ông mặt trời!</h3>
+                        <p class="text-base text-slate-500 font-semibold">Em đã kết thúc toàn bộ thử thách tự ôn tập của bài này.</p>
+                    </div>
+                    <div class="bg-slate-50 p-6 rounded-3xl max-w-sm mx-auto border-2 border-slate-100">
+                        <span class="text-xs md:text-sm text-slate-400 font-black uppercase tracking-wider">Kết quả đạt được</span>
+                        <p id="quiz-final-score" class="text-5xl font-black text-green-600 mt-2">10/11</p>
+                        <p class="text-xs md:text-sm text-slate-500 font-bold mt-2">Số câu em tự tin đã nhớ vững vàng!</p>
+                    </div>
+                    <div class="pt-4 flex gap-4 max-w-md mx-auto">
+                        <button onclick="startQuizGame()" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-extrabold py-3.5 rounded-2xl transition-all text-sm md:text-base">Chơi lại</button>
+                        <button onclick="navigateTo('home')" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold py-3.5 rounded-2xl transition-all text-sm md:text-base">Về trang chủ</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= MODE 4: INTERACTIVE WIDGET ================= -->
+            <div id="mode-widget" class="mode-container hidden max-w-2xl mx-auto">
+                <div id="interactive-widget-content"></div>
+            </div>
+        </section>
+
+        <!-- ================= MEMORY VERSES SECTION ================= -->
+        <section id="section-verses" class="hidden space-y-10 animate-fade-in">
+            <div class="text-center space-y-3">
+                <span class="bg-amber-100 text-amber-700 text-xs md:text-sm font-black px-4 py-2 rounded-full uppercase tracking-widest inline-block">Môi miệng xưng danh Chúa</span>
+                <h2 class="heading-font text-3xl md:text-5xl font-extrabold text-slate-800">Các Câu Gốc Thánh Kinh Hè 2026</h2>
+                <p class="text-base md:text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">Hãy học thuộc lòng những câu Kinh Thánh then chốt này để dâng hiến lời nói đẹp lòng Chúa.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Verse 1 Card -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-rose-100 shadow-md relative overflow-hidden flex flex-col justify-between space-y-6 min-h-[16rem]">
+                    <div class="absolute -right-3 -top-3 w-14 h-14 bg-rose-50 rounded-full flex items-center justify-center font-black text-rose-500 text-base shadow-sm">B1-B2</div>
+                    <div class="space-y-3 pt-4">
+                        <span class="text-xs font-black tracking-widest text-rose-500 uppercase">Bài 1 &amp; Bài 2</span>
+                        <p class="text-base md:text-lg font-extrabold text-slate-700 leading-loose italic">“Vậy, hãy cậy Đức Chúa Jêsus mà hằng dâng tế lễ bằng lời ngợi khen cho Đức Chúa Trời, nghĩa là bông trái của môi miếng xưng danh Ngài ra”</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                        <span class="text-sm md:text-base font-black text-rose-600">Hê-bơ-rơ 13:15</span>
+                        <button onclick="playVerseAudio('“Vậy, hãy cậy Đức Chúa Jêsus mà hằng dâng tế lễ bằng lời ngợi khen cho Đức Chúa Trời, nghĩa là bông trái của môi miếng xưng danh Ngài ra” Hê bơ rơ mười ba câu mười lăm')" class="p-3 bg-rose-50 hover:bg-rose-100 rounded-xl text-rose-500 transition-colors shadow-sm">
+                            <i data-lucide="volume-2" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Verse 2 Card -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-emerald-100 shadow-md relative overflow-hidden flex flex-col justify-between space-y-6 min-h-[16rem]">
+                    <div class="absolute -right-3 -top-3 w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center font-black text-emerald-500 text-base shadow-sm">B3</div>
+                    <div class="space-y-3 pt-4">
+                        <span class="text-xs font-black tracking-widest text-emerald-500 uppercase">Bài 3</span>
+                        <p class="text-base md:text-lg font-extrabold text-slate-700 leading-loose italic">“Đức Giê-hô-va chẳng xem điều gì loài người xem; loài người xem bề ngoài, nhưng Đức Giê-hô-va nhìn thấy trong lòng.”</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                        <span class="text-sm md:text-base font-black text-emerald-600">I Sa-mu-ên 16:7b</span>
+                        <button onclick="playVerseAudio('“Đức Giê-hô-va chẳng xem điều gì loài người xem; loài người xem bề ngoài, nhưng Đức Giê-hô-va nhìn thấy trong lòng.” một sa mu ên mười sáu câu bảy bê')" class="p-3 bg-emerald-50 hover:bg-emerald-100 rounded-xl text-emerald-500 transition-colors shadow-sm">
+                            <i data-lucide="volume-2" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Verse 3 Card -->
+                <div class="bg-white rounded-3xl p-8 border-2 border-indigo-100 shadow-md relative overflow-hidden flex flex-col justify-between space-y-6 min-h-[16rem]">
+                    <div class="absolute -right-3 -top-3 w-14 h-14 bg-indigo-50 rounded-full flex items-center justify-center font-black text-indigo-500 text-base shadow-sm">B4-B5</div>
+                    <div class="space-y-3 pt-4">
+                        <span class="text-xs font-black tracking-widest text-indigo-500 uppercase">Bài 4 &amp; Bài 5</span>
+                        <p class="text-base md:text-lg font-extrabold text-slate-700 leading-loose italic">“Chớ quên việc lành và lòng bố thí, vì sự tế lễ dường ấy đẹp lòng Đức Chúa Trời.”</p>
+                    </div>
+                    <div class="border-t border-slate-100 pt-4 flex items-center justify-between">
+                        <span class="text-sm md:text-base font-black text-indigo-600">Hê-bơ-rơ 13:16</span>
+                        <button onclick="playVerseAudio('“Chớ quên việc lành và lòng bố thí, vì sự tế lễ dường ấy đẹp lòng Đức Chúa Trời.” Hê bơ rơ mười ba câu mười sáu')" class="p-3 bg-indigo-50 hover:bg-indigo-100 rounded-xl text-indigo-500 transition-colors shadow-sm">
+                            <i data-lucide="volume-2" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Verse Fun Mode -->
+            <div class="bg-amber-100 rounded-[2.5rem] p-8 text-center max-w-2xl mx-auto border-2 border-amber-200 shadow-sm">
+                <h3 class="heading-font text-2xl font-black text-amber-900">Hoạt động Gợi Ý cho Thầy Cô & Phụ Huynh</h3>
+                <p class="text-base text-amber-800 leading-relaxed mt-3">
+                    Nhấp vào nút <i data-lucide="volume-2" class="inline-block w-5 h-5 align-middle"></i> để máy phát âm to rõ từng câu Kinh Thánh bằng tiếng Việt. Ba mẹ có thể cho các em nghe đi nghe lại để ghi nhớ nhanh hơn, hoặc chơi trò "che từ" để các em điền vào chỗ trống nhé!
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-green-100 py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 text-center space-y-3">
+            <p class="heading-font text-xl font-black text-green-700">Thánh Kinh Hè 2026 - Lớp Nhi Đồng</p>
+            <p class="text-sm md:text-base text-slate-400 font-bold">Tài liệu ôn thi tương tác thông minh • Thiết kế phóng to rõ ràng cho thiếu nhi</p>
+        </div>
+    </footer>
+
+    <!-- Safe Kid-friendly Custom Notification Modal (No alerts allowed!) -->
+    <div id="custom-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-fade-in">
+        <div class="bg-white rounded-[2.5rem] p-8 max-w-sm w-full border-4 border-yellow-300 shadow-2xl text-center space-y-5">
+            <div id="modal-icon" class="w-16 h-16 bg-yellow-100 text-yellow-500 rounded-2xl flex items-center justify-center mx-auto text-3xl">
+                💡
+            </div>
+            <h3 id="modal-title" class="heading-font text-2xl font-black text-slate-800">Thành kính hè</h3>
+            <p id="modal-message" class="text-base font-bold text-slate-600 leading-relaxed">Nội dung thông báo...</p>
+            <div id="modal-actions" class="flex gap-3 justify-center pt-2">
+                <button id="modal-btn-cancel" class="hidden px-5 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold text-sm transition-all border border-slate-200">Hủy</button>
+                <button id="modal-btn-ok" class="px-6 py-3 rounded-2xl bg-green-500 hover:bg-green-600 text-white font-extrabold text-sm transition-all shadow-md">Đồng ý</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LESSONS DATA -->
+    <script>
+        const lessonsData = [
+            {
+                id: 1,
+                title: "Bài 1: Nhờ Chúa Jêsus, Em Dâng Của Lễ",
+                subtitle: "Đề Ôn Thánh Kinh Hè 2026 - Lớp Nhi Đồng",
+                verse: {
+                    text: "“Vậy, hãy cậy Đức Chúa Jêsus mà hằng dâng tế lễ bằng lời ngợi khen cho Đức Chúa Trời, nghĩa là bông trái của môi miếng xưng danh Ngài ra”",
+                    ref: "Hê-bơ-rơ 13:15"
+                },
+                questions: [
+                    {
+                        id: 1,
+                        question: "Ghi nội dung tương ứng vào cây cầu cứu rỗi.",
+                        answer: "• Bờ (A) : CON NGƯỜI, TỘI LỖI\n• Bờ (B) : ĐỨC CHÚA TRỜI, THÁNH KHIẾT\n• Thanh ngang của cây cầu : CHÚA Jêsus",
+                        hasGame: true,
+                        gameType: "bridge"
+                    },
+                    {
+                        id: 2,
+                        question: "Nếu em là một trong những người đứng ở bờ A và nhìn thấy cây cầu thập tự dẫn sang bờ B, em sẽ làm gì? Vì sao?",
+                        answer: "Em sẽ bước lên cây cầu và đi sang bờ bên kia, vì em tin rằng Chúa Jêsus là con đường duy nhất đưa em đến với Đức Chúa Trời và ban cho em sự sống đời đời."
+                    },
+                    {
+                        id: 3,
+                        question: "Nhờ Chúa Jêsus, em nhận được 2 điều quan trọng nào?",
+                        answer: "• Nhờ Chúa Jêsus, em được đến gần Đức Chúa Trời.\n• Nhờ Chúa Jêsus, Đức Chúa Trời đẹp lòng và vui nhận của lễ (sự thờ phượng) của em."
+                    },
+                    {
+                        id: 4,
+                        question: "Trong khi con người xa cách với Đức Chúa Trời, muốn đến với Ngài nhưng không được thì ai đã đến thế gian, làm cầu nối (trung gian) cho con người đến với Đức Chúa Trời?",
+                        answer: "Chúa Jêsus"
+                    },
+                    {
+                        id: 5,
+                        question: "Vì sao con người không thể đến gần Đức Chúa Trời?",
+                        answer: "Vì con người sống trong tội lỗi, còn Đức Chúa Trời là Đấng Thánh Khiết."
+                    },
+                    {
+                        id: 6,
+                        question: "Người \"nhờ Chúa Jêsus\" dâng của lễ lên Đức Chúa Trời là người như thế nào?",
+                        answer: "• Là người thật sự tin nhận Chúa Jêsus.\n• Là người luôn luôn nhờ cậy Ngài."
+                    },
+                    {
+                        id: 7,
+                        question: "Câu sau là đúng hay sai: Tiếp nhận Chúa Jêsus, nghĩa là em thừa nhận rằng em là người có tội và không muốn sống trong tội lỗi nữa, em tin rằng Đức Chúa Trời yêu thương em, và Chúa Jêsus chịu hình phạt thay cho chính em, em tôn Chúa là Cứu Chúa, là chủ đời sống của em và thưa với Chúa qua lời cầu nguyện.",
+                        answer: "Đúng"
+                    },
+                    {
+                        id: 8,
+                        question: "Trong việc dâng của lễ và thờ phượng Đức Chúa Trời, chúng ta cần làm gì để được Ngài vui lòng tiếp nhận?",
+                        answer: "Cần có đức tin và phải nhờ Chúa Jêsus."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Bài 2: Của Lễ Ca Ngợi",
+                subtitle: "Đề Ôn Thánh Kinh Hè 2026 - Lớp Nhi Đồng",
+                verse: {
+                    text: "“Vậy, hãy cậy Đức Chúa Jêsus mà hằng dâng tế lễ bằng lời ngợi khen cho Đức Chúa Trời, nghĩa là bông trái của môi miếng xưng danh Ngài ra”",
+                    ref: "Hê-bơ-rơ 13:15"
+                },
+                questions: [
+                    {
+                        id: 1,
+                        question: "Khi Chúa Jêsus vào thành Giê-ru-sa-lem, dân chúng đã tung hô Ngài như thế nào?",
+                        answer: "Hô-sa-na"
+                    },
+                    {
+                        id: 2,
+                        question: "Thi-thiên 8:2 nói về điều gì?",
+                        answer: "Sự tung hô ca ngợi danh Thánh ra từ miệng trẻ thơ."
+                    },
+                    {
+                        id: 3,
+                        question: "Bàn tay cầu nguyện gồm có:",
+                        answer: "1. Ca ngợi\n2. Ăn năn\n3. Cảm tạ\n4. Cầu thay\n5. Cầu xin",
+                        hasGame: true,
+                        gameType: "hand"
+                    },
+                    {
+                        id: 4,
+                        question: "Chúa Jêsus có nghe thấy tiếng tung hô ca ngợi của những đứa trẻ không?",
+                        answer: "Có"
+                    },
+                    {
+                        id: 5,
+                        question: "Chúa Jêsus là dòng dõi của vua nào?",
+                        answer: "Vua Đa-vít"
+                    },
+                    {
+                        id: 6,
+                        question: "Ngày thứ hai, Chúa Jêsus vào khuôn viên đền thờ để làm gì?",
+                        answer: "Ngài dọn sạch khuôn viên đền thờ."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Bài 3: Của Lễ Dâng Hiến",
+                subtitle: "Đề Ôn Thánh Kinh Hè 2026 - Lớp Nhi Đồng",
+                verse: {
+                    text: "“Đức Giê-hô-va chẳng xem điều gì loài người xem; loài người xem bề ngoài, nhưng Đức Giê-hô-va nhìn thấy trong lòng.”",
+                    ref: "I Sa-mu-ên 16:7b"
+                },
+                questions: [
+                    {
+                        id: 1,
+                        question: "Đức Chúa Jêsus đã ngồi ở đâu khi quan sát mọi người dâng hiến?",
+                        answer: "Ngài ngồi đối diện cái rương đựng tiền dâng."
+                    },
+                    {
+                        id: 2,
+                        question: "Chúa Jêsus khen ai sau khi quan sát những người dâng hiến?",
+                        answer: "Một người đàn bà góa"
+                    },
+                    {
+                        id: 3,
+                        question: "Người đàn bà góa trong câu chuyện dâng hiến được mô tả như thế nào?",
+                        answer: "Nghèo và thiếu thốn"
+                    },
+                    {
+                        id: 4,
+                        question: "Những người giàu đã bỏ bao nhiêu tiền vào rương?",
+                        answer: "Những người giàu đã bỏ nhiều tiền."
+                    },
+                    {
+                        id: 5,
+                        question: "Những người dâng nhiều tiền nơi đền thờ, Chúa Jêsus nhận xét gì về họ?",
+                        answer: "Họ chỉ dâng tiền dư của mình."
+                    },
+                    {
+                        id: 6,
+                        question: "Người đàn bà góa đã dâng bao nhiêu tiền?",
+                        answer: "2 đồng xu (lép-ton)"
+                    },
+                    {
+                        id: 7,
+                        question: "Chúa Jêsus nhận xét gì về người đàn bà góa?",
+                        answer: "Bà dâng nhiều hơn tất cả người giàu."
+                    },
+                    {
+                        id: 8,
+                        question: "Người đàn bà góa đã dâng hiến như thế nào?",
+                        answer: "Bà đã dâng hết tất cả tiền bà có."
+                    },
+                    {
+                        id: 9,
+                        question: "Qua nhận xét của Đức Chúa Jêsus, chúng ta có thể hiểu Ngài đánh giá tấm lòng dâng hiến như thế nào?",
+                        answer: "Ngài không nhìn vào số lượng tiền nhiều hay ít, mà nhìn vào tấm lòng tận hiến cho Chúa."
+                    },
+                    {
+                        id: 10,
+                        question: "Theo em, người đàn bà góa đã có thái độ như thế nào khi dâng hai đồng tiền cuối cùng của mình?",
+                        answer: "Bà tin cậy hoàn toàn vào Chúa và sẵn lòng dâng hiến cho Chúa."
+                    },
+                    {
+                        id: 11,
+                        question: "Từ câu chuyện này, bài học em rút ra là gì?",
+                        answer: "Dù dâng ít hay nhiều, nếu dâng bằng tất cả tấm lòng, thì đó là của lễ đẹp lòng Chúa."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Bài 4: Của Lễ Giúp Đỡ",
+                subtitle: "Đề Ôn Thánh Kinh Hè 2026 - Lớp Nhi Đồng",
+                verse: {
+                    text: "“Chớ quên việc lành và lòng bố thí, vì sự tế lễ dường ấy đẹp lòng Đức Chúa Trời.”",
+                    ref: "Hê-bơ-rơ 13:16"
+                },
+                questions: [
+                    {
+                        id: 1,
+                        question: "Khi Dâng Của Lễ lên Đức Chúa Trời, các em dâng bằng những cách nào?",
+                        answer: "• Dâng bằng môi miệng ca ngợi danh Chúa.\n• Dâng bằng đôi tay, đôi chân làm công việc Chúa.\n• Dâng bằng các việc lành và chia sẻ cho người khác."
+                    },
+                    {
+                        id: 2,
+                        question: "Điền vào chỗ trống: Làm việc tốt lành, giúp đỡ người khác, hy sinh cho người khác chính là … cho Chúa. Đó là những … đẹp lòng Đức Chúa Trời",
+                        answer: "• làm điều tốt lành\n• của lễ"
+                    },
+                    {
+                        id: 3,
+                        question: "Điền vào chỗ trống \"Đúng\" hoặc \"Sai\":\na) … Có người cho rằng dâng của lễ lên Đức Chúa Trời bằng môi miệng, vậy là đủ.\nb) … Chia sẻ điều tốt đẹp cho người khác, làm những điều Chúa vui lòng.\nc) … Thờ phượng Đức Chúa Trời không chỉ hướng về Đức Chúa Trời mà còn hướng về người khác.",
+                        answer: "a) Sai\nb) Đúng\nc) Đúng"
+                    },
+                    {
+                        id: 4,
+                        question: "Bà Ta-bi-tha đã làm những gì mà nhận được sự yêu thương của mọi người?",
+                        answer: "Bà may quần áo tặng cho người khó khăn, chia sẻ lòng tốt của bà."
+                    },
+                    {
+                        id: 5,
+                        question: "Muốn làm những việc tốt lành, cần lưu ý điều gì?",
+                        answer: "Cần quyết định nhanh và thực hiện ngay."
+                    },
+                    {
+                        id: 6,
+                        question: "Việc tốt lành mà Sứ đồ Phi-e-rơ làm là gì khi bà Ta-bi-tha mất?",
+                        answer: "Ông quỳ gối cầu nguyện với đức tin, bày tỏ quyền năng của Chúa Jêsus."
+                    },
+                    {
+                        id: 7,
+                        question: "Thờ phượng Đức Chúa Trời không chỉ là sự thờ phượng hướng về Đức Chúa Trời, mà còn là sự giúp đỡ hướng về người khác. Đúng hay Sai?",
+                        answer: "Đúng"
+                    },
+                    {
+                        id: 8,
+                        question: "Kết quả của đời sống thường xuyên làm việc tốt lành và chia sẻ của bà Ta-bi-tha là gì?",
+                        answer: "Nhiều người ở thành Giốp-bê tin nhận Chúa."
+                    },
+                    {
+                        id: 9,
+                        question: "Hành động giúp đỡ người khác của người tin Chúa chính là của lễ dâng lên Chúa. Đúng hay sai?",
+                        answer: "Đúng"
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Bài 5: Của Lễ Cứu Trợ",
+                subtitle: "Đề Ôn Thánh Kinh Hè 2026 - Lớp Nhi Đồng",
+                verse: {
+                    text: "“Chớ quên việc lành và lòng bố thí, vì sự tế lễ dường ấy đẹp lòng Đức Chúa Trời.”",
+                    ref: "Hê-bơ-rơ 13:16"
+                },
+                questions: [
+                    {
+                        id: 1,
+                        question: "Ban đầu, những người bị tản lạc do cơn bắt bớ sau vụ Ê-tiên chỉ giảng đạo cho ai?",
+                        answer: "Người Do Thái (người Giu-đa)"
+                    },
+                    {
+                        id: 2,
+                        question: "Những môn đồ quê ở đảo Chíp-rơ và Sy-ren khi đến An-ti-ốt đã giảng Tin Lành cho ai ngoài người Do Thái?",
+                        answer: "Người Hy Lạp (người Gờ-réc)"
+                    },
+                    {
+                        id: 3,
+                        question: "Khi nghe tin có nhiều người tin nhận Chúa tại An-ti-ốt, Hội Thánh Giê-ru-sa-lem đã cử ai đến đó?",
+                        answer: "Ba-na-ba"
+                    },
+                    {
+                        id: 4,
+                        question: "Ba-na-ba được mô tả là người như thế nào?",
+                        answer: "Là người tốt, đầy dẫy Đức Thánh Linh và đức tin."
+                    },
+                    {
+                        id: 5,
+                        question: "Ba-na-ba đã đi đến thành Tạt-sơ để tìm ai?",
+                        answer: "Tìm Sau-lơ"
+                    },
+                    {
+                        id: 6,
+                        question: "Ba-na-ba và Sau-lơ đã ở lại nhóm và dạy dỗ Hội Thánh tại An-ti-ốt trong bao lâu?",
+                        answer: "1 năm"
+                    },
+                    {
+                        id: 7,
+                        question: "Chính tại thành phố nào, người ta lần đầu tiên bắt đầu gọi các môn đồ là \"Cơ Đốc nhân\"?",
+                        answer: "An-ti-ốt"
+                    },
+                    {
+                        id: 8,
+                        question: "Nhà tiên tri A-ga-bút đã được Đức Thánh Linh báo trước về điều gì?",
+                        answer: "Có sự đói kém trên khắp đất"
+                    },
+                    {
+                        id: 9,
+                        question: "Khi nghe tin các anh em ở Giu-đê sắp gặp nạn đói, các môn đồ ở An-ti-ốt đã thể hiện tinh thần như thế nào?",
+                        answer: "Đồng lòng, sẵn sàng chia sẻ và quyết định gửi quà cứu trợ"
+                    },
+                    {
+                        id: 10,
+                        question: "Các môn đồ tại An-ti-ốt đã đóng góp quà cứu trợ dựa trên tinh thần và mức độ như thế nào?",
+                        answer: "Mỗi người tùy theo khả năng (sức mình) mà dâng hiến."
+                    },
+                    {
+                        id: 11,
+                        question: "Các môn đồ tại An-ti-ốt đã quyết định làm gì để giúp đỡ các anh em ở Giu-đê khi nạn đói xảy ra?",
+                        answer: "Mỗi người tùy khả năng, gửi phần cứu trợ qua tay Ba-na-ba và Phao-lô."
+                    }
+                ]
+            }
+        ];
+
+        // Global finger details constant
+        const fingerDetails = {
+            1: {
+                title: "1. Ngón Cái: CA NGỢI CHÚA",
+                desc: "Thưa gửi những lời ca ngợi lên Đức Chúa Trời, nhìn xem quyền năng vinh hiển tuyệt vời của Chúa và dâng lời chúc tụng Ngài.",
+                color: "bg-yellow-50 border-yellow-200 text-yellow-800"
+            },
+            2: {
+                title: "2. Ngón Trỏ: ĂN NĂN",
+                desc: "Xưng nhận và hối lỗi với Đức Chúa Trời về những việc sai lầm, dơ bẩn của môi miệng, suy nghĩ hoặc việc làm của mình để được tha thứ.",
+                color: "bg-red-50 border-red-200 text-red-800"
+            },
+            3: {
+                title: "3. Ngón Giữa: CẢM TẠ CHÚA",
+                desc: "Bày tỏ lòng biết ơn của chúng ta trước những phước lành lớn lao, sự chở che, chăm sóc và sự bảo bọc yêu mến của Chúa hằng ngày.",
+                color: "bg-green-50 border-green-200 text-green-800"
+            },
+            4: {
+                title: "4. Ngón Áp Út: CẦU THAY CHO NGƯỜI KHÁC",
+                desc: "Cầu nguyện dâng trình những khó khăn, thiếu thốn, đau đớn bệnh tật của những người lân cận xung quanh ta (gia đình, bạn bè, thầy cô, người khó khăn).",
+                color: "bg-blue-50 border-blue-200 text-blue-800"
+            },
+            5: {
+                title: "5. Ngón Út: CẦU XIN CHO CHÍNH MÌNH",
+                desc: "Dâng những tâm tư, mong ước, sự cần dùng thường ngày của chính bản thân mình lên cho Chúa, tin cậy rằng Ngài nghe và đáp lời một cách tuyệt diệu.",
+                color: "bg-purple-50 border-purple-200 text-purple-800"
+            }
+        };
+    </script>
+
+    <!-- Safe kid-friendly non-blocking popups -->
+    <script>
+        function showCustomAlert(message, type = 'info') {
+            const modal = document.getElementById('custom-modal');
+            const titleEl = document.getElementById('modal-title');
+            const msgEl = document.getElementById('modal-message');
+            const iconEl = document.getElementById('modal-icon');
+            const cancelBtn = document.getElementById('modal-btn-cancel');
+            const okBtn = document.getElementById('modal-btn-ok');
+
+            if (!modal) return;
+
+            cancelBtn.classList.add('hidden');
+            okBtn.innerText = "Đã rõ!";
+            okBtn.onclick = closeCustomModal;
+
+            if (type === 'error') {
+                iconEl.innerHTML = "❌";
+                iconEl.className = "w-16 h-16 bg-red-100 text-red-500 rounded-2xl flex items-center justify-center mx-auto text-3xl";
+                titleEl.innerText = "Rất tiếc...";
+                titleEl.className = "heading-font text-2xl font-black text-red-600";
+            } else if (type === 'success') {
+                iconEl.innerHTML = "🎉";
+                iconEl.className = "w-16 h-16 bg-green-100 text-green-500 rounded-2xl flex items-center justify-center mx-auto text-3xl";
+                titleEl.innerText = "Tuyệt vời!";
+                titleEl.className = "heading-font text-2xl font-black text-green-600";
+            } else {
+                iconEl.innerHTML = "💡";
+                iconEl.className = "w-16 h-16 bg-yellow-100 text-yellow-500 rounded-2xl flex items-center justify-center mx-auto text-3xl";
+                titleEl.innerText = "Bé ơi!";
+                titleEl.className = "heading-font text-2xl font-black text-amber-600";
+            }
+
+            msgEl.innerText = message;
+            modal.classList.remove('hidden');
+            playSynthBeep(440, 0.1);
+        }
+
+        function showCustomConfirm(message, onConfirm) {
+            const modal = document.getElementById('custom-modal');
+            const titleEl = document.getElementById('modal-title');
+            const msgEl = document.getElementById('modal-message');
+            const iconEl = document.getElementById('modal-icon');
+            const cancelBtn = document.getElementById('modal-btn-cancel');
+            const okBtn = document.getElementById('modal-btn-ok');
+
+            if (!modal) return;
+
+            iconEl.innerHTML = "❓";
+            iconEl.className = "w-16 h-16 bg-blue-100 text-blue-500 rounded-2xl flex items-center justify-center mx-auto text-3xl";
+            titleEl.innerText = "Xác nhận";
+            titleEl.className = "heading-font text-2xl font-black text-blue-600";
+            msgEl.innerText = message;
+
+            cancelBtn.classList.remove('hidden');
+            okBtn.innerText = "Đồng ý";
+
+            cancelBtn.onclick = closeCustomModal;
+            okBtn.onclick = () => {
+                closeCustomModal();
+                if (onConfirm) onConfirm();
+            };
+
+            modal.classList.remove('hidden');
+            playSynthBeep(330, 0.1);
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('custom-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function confirmResetProgress() {
+            showCustomConfirm("Em có chắc chắn muốn xóa tất cả tiến trình ôn tập để học lại từ đầu không?", () => {
+                resetMemoryProgress();
+                saveProgress();
+                playSynthBeep(196, 0.3, 'sawtooth');
+            });
+        }
+    </script>
+
+    <!-- Audio Helper (Native API Synth) -->
+    <script>
+        // Sound toggle state
+        let isSoundOn = true;
+
+        function toggleSound() {
+            isSoundOn = !isSoundOn;
+            const icon = document.getElementById('sound-icon');
+            if (isSoundOn) {
+                if (icon) icon.setAttribute('data-lucide', 'volume-2');
+                document.getElementById('sound-btn').className = "p-3 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors";
+            } else {
+                if (icon) icon.setAttribute('data-lucide', 'volume-x');
+                document.getElementById('sound-btn').className = "p-3 rounded-xl bg-red-50 text-red-500 hover:bg-red-100 transition-colors";
+            }
+            tryToUpdateIcons();
+            playSynthBeep(220, 0.05); // low feedback tone
+        }
+
+        // Lightweight Synth SFX (Using Web Audio API)
+        function playSynthBeep(frequency, duration, type = 'sine') {
+            if (!isSoundOn) return;
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.type = type;
+                oscillator.frequency.value = frequency;
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                // Audio context may require guest interaction
+            }
+        }
+
+        function playSuccessChime() {
+            playSynthBeep(523.25, 0.1); // C5
+            setTimeout(() => playSynthBeep(659.25, 0.15), 100); // E5
+            setTimeout(() => playSynthBeep(783.99, 0.3), 200); // G5
+        }
+
+        function playFlipTone() {
+            playSynthBeep(440, 0.08, 'triangle');
+        }
+
+        // Native Text-to-Speech
+        function speakText(text) {
+            if (!window.speechSynthesis) return;
+            try {
+                window.speechSynthesis.cancel(); // stop current reading
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'vi-VN';
+                const voices = window.speechSynthesis.getVoices();
+                const viVoice = voices.find(v => v.lang.includes('vi'));
+                if (viVoice) {
+                    utterance.voice = viVoice;
+                }
+                window.speechSynthesis.speak(utterance);
+            } catch (e) {
+                console.error("Text-to-speech error:", e);
+            }
+        }
+    </script>
+
+    <!-- CORE WEB APP LOGIC -->
+    <script>
+        let currentLesson = null;
+        let activeTab = 'list';
+        let currentCardIndex = 0;
+        let isFlipped = false;
+
+        // Progress Tracking (với cơ chế try-catch chống sập khi sandbox chặn localStorage)
+        let masterProgress = {};
+
+        function initProgress() {
+            try {
+                const stored = localStorage.getItem('tkh_2026_progress');
+                if (stored) {
+                    masterProgress = JSON.parse(stored);
+                } else {
+                    resetMemoryProgress();
+                }
+            } catch (e) {
+                console.warn("localStorage bị chặn hoặc không truy cập được. Sử dụng lưu trữ tạm thời trên bộ nhớ RAM.", e);
+                resetMemoryProgress();
+            }
+        }
+
+        function resetMemoryProgress() {
+            masterProgress = {};
+            lessonsData.forEach(l => {
+                masterProgress[l.id] = {};
+            });
+        }
+
+        function saveProgress() {
+            try {
+                localStorage.setItem('tkh_2026_progress', JSON.stringify(masterProgress));
+            } catch (e) {
+                console.warn("Không thể lưu trạng thái vào localStorage trong môi trường Sandbox.", e);
+            }
+            renderDashboardProgress();
+            updateLessonProgressUI();
+        }
+
+        function toggleQuestionMastery(lessonId, questionId) {
+            if (!masterProgress[lessonId]) masterProgress[lessonId] = {};
+            
+            if (masterProgress[lessonId][questionId]) {
+                delete masterProgress[lessonId][questionId];
+                playSynthBeep(293.66, 0.1); // D5 (undo sound)
+            } else {
+                masterProgress[lessonId][questionId] = true;
+                playSuccessChime(); // celebration
+            }
+            saveProgress();
+            
+            if (activeTab === 'list') {
+                renderListQuestions();
+            }
+        }
+
+        // Dashboard Progress Display
+        function renderDashboardProgress() {
+            const container = document.getElementById('progress-bars-container');
+            if (!container) return;
+            container.innerHTML = '';
+            
+            let totalQuestions = 0;
+            let totalMastered = 0;
+
+            lessonsData.forEach(l => {
+                const count = l.questions.length;
+                const masteredCount = Object.keys(masterProgress[l.id] || {}).length;
+                const percent = count > 0 ? Math.round((masteredCount / count) * 100) : 0;
+                
+                totalQuestions += count;
+                totalMastered += masteredCount;
+
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 p-4 rounded-2xl border-2 border-slate-100 flex flex-col justify-between cursor-pointer hover:bg-green-50/50 transition-colors min-h-[7.5rem]";
+                card.onclick = () => navigateTo(`lesson${l.id}`);
+                card.innerHTML = `
+                    <div class="space-y-1">
+                        <h4 class="text-sm font-black text-slate-700">Bài ${l.id}</h4>
+                        <div class="flex justify-between items-baseline gap-1 flex-wrap">
+                            <span class="text-xl font-extrabold text-slate-800">${masteredCount}/${count}</span>
+                            <span class="text-xs font-black text-green-600">${percent}%</span>
+                        </div>
+                    </div>
+                    <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden mt-3 p-0.5">
+                        <div class="bg-green-500 h-full rounded-full" style="width: ${percent}%"></div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+
+            // Overall
+            const overallPercent = totalQuestions > 0 ? Math.round((totalMastered / totalQuestions) * 100) : 0;
+            const overallText = document.getElementById('overall-progress-text');
+            const overallBar = document.getElementById('overall-progress-bar');
+            if (overallText) overallText.innerText = `${totalMastered}/${totalQuestions} Câu (${overallPercent}%)`;
+            if (overallBar) overallBar.style.width = `${overallPercent}%`;
+        }
+
+        function updateLessonProgressUI() {
+            if (!currentLesson) return;
+            const count = currentLesson.questions.length;
+            const masteredCount = Object.keys(masterProgress[currentLesson.id] || {}).length;
+            const percent = count > 0 ? Math.round((masteredCount / count) * 100) : 0;
+
+            const scoreText = document.getElementById('lesson-score-text');
+            const progressBar = document.getElementById('lesson-progress-bar');
+            if (scoreText) scoreText.innerText = `${masteredCount}/${count}`;
+            if (progressBar) progressBar.style.width = `${percent}%`;
+        }
+
+        // NAVIGATION
+        function navigateTo(targetId) {
+            document.getElementById('section-home').classList.add('hidden');
+            document.getElementById('section-lesson').classList.add('hidden');
+            document.getElementById('section-verses').classList.add('hidden');
+
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.className = "nav-btn px-4 py-2.5 rounded-xl text-base font-bold text-gray-600 hover:bg-slate-50 transition-all";
+            });
+            document.getElementById('nav-verses').className = "nav-btn px-4 py-2.5 rounded-xl text-base font-bold text-amber-600 hover:bg-amber-50 transition-all flex items-center gap-1.5";
+
+            if (targetId.startsWith('lesson')) {
+                const lessonId = parseInt(targetId.replace('lesson', ''));
+                currentLesson = lessonsData.find(l => l.id === lessonId);
+                
+                document.getElementById('section-lesson').classList.remove('hidden');
+                initLessonView();
+                
+                const navBtn = document.getElementById(`nav-${targetId}`);
+                if (navBtn) navBtn.className = "nav-btn px-5 py-3 rounded-2xl text-base font-extrabold text-green-700 bg-green-50 transition-all";
+            } else if (targetId === 'verses') {
+                document.getElementById('section-verses').classList.remove('hidden');
+                document.getElementById('nav-verses').className = "nav-btn px-5 py-3 rounded-2xl text-base font-extrabold text-white bg-amber-500 transition-all flex items-center gap-1.5";
+            } else {
+                document.getElementById('section-home').classList.remove('hidden');
+                document.getElementById('nav-home').className = "nav-btn px-5 py-3 rounded-2xl text-base font-extrabold text-green-700 bg-green-50 transition-all flex items-center gap-1.5";
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            playSynthBeep(330, 0.05);
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu) menu.classList.toggle('hidden');
+        }
+
+        // STUDY MODULES SWITCHING
+        function switchStudyMode(mode) {
+            activeTab = mode;
+            document.querySelectorAll('.mode-container').forEach(cont => cont.classList.add('hidden'));
+            
+            document.querySelectorAll('[id^="tab-"]').forEach(t => {
+                t.className = "flex-1 md:flex-none px-6 py-4 font-extrabold text-base rounded-t-2xl border-t border-x border-transparent transition-all flex items-center justify-center gap-2 text-gray-500 hover:text-slate-800";
+            });
+
+            const tabEl = document.getElementById(`tab-${mode}`);
+            if (tabEl) {
+                tabEl.className = "flex-1 md:flex-none px-6 py-4 font-extrabold text-base rounded-t-2xl bg-white border-t border-x border-slate-100 shadow-[0_-2px_4px_-1px_rgba(0,0,0,0.02)] text-green-700 flex items-center justify-center gap-2";
+            }
+
+            const container = document.getElementById(`mode-${mode}`);
+            if (container) container.classList.remove('hidden');
+
+            if (mode === 'cards') {
+                currentCardIndex = 0;
+                isFlipped = false;
+                renderFlashcard();
+            } else if (mode === 'quiz') {
+                resetQuiz();
+            } else if (mode === 'widget') {
+                renderInteractiveWidget();
+            }
+            playSynthBeep(392, 0.05);
+        }
+
+        function initLessonView() {
+            if (!currentLesson) return;
+
+            document.getElementById('lesson-title').innerText = currentLesson.title;
+            document.getElementById('lesson-subtitle').innerText = currentLesson.subtitle;
+            document.getElementById('lesson-verse-text').innerText = currentLesson.verse.text;
+            document.getElementById('lesson-verse-ref').innerText = currentLesson.verse.ref;
+
+            const widgetTab = document.getElementById('tab-widget');
+            const hasCustomWidget = currentLesson.questions.some(q => q.hasGame) || currentLesson.id === 2;
+            if (hasCustomWidget) {
+                if (widgetTab) {
+                    widgetTab.classList.remove('hidden');
+                    widgetTab.innerHTML = `<i data-lucide="gamepad-2" class="w-5 h-5 animate-bounce"></i> Mô Hình Tương Tác`;
+                }
+            } else {
+                if (widgetTab) widgetTab.classList.add('hidden');
+            }
+            tryToUpdateIcons();
+
+            switchStudyMode('list');
+            updateLessonProgressUI();
+            
+            renderListQuestions();
+        }
+
+        // ================= MODE 1: LIST QUESTIONS =================
+        function renderListQuestions() {
+            const listContainer = document.getElementById('questions-list');
+            if (!listContainer) return;
+            listContainer.innerHTML = '';
+
+            const searchInput = document.getElementById('list-search');
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+            currentLesson.questions.forEach((q, idx) => {
+                if (searchTerm && !q.question.toLowerCase().includes(searchTerm) && !q.answer.toLowerCase().includes(searchTerm)) {
+                    return;
+                }
+
+                const isMastered = masterProgress[currentLesson.id]?.[q.id] || false;
+
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-[2rem] border-2 ${isMastered ? 'border-green-300 shadow-green-50/50' : 'border-slate-100'} p-6 md:p-8 shadow-sm transition-all relative overflow-hidden`;
+                
+                card.innerHTML = `
+                    <div class="flex flex-col md:flex-row items-start justify-between gap-6">
+                        <div class="space-y-3 flex-grow">
+                            <div class="flex items-center gap-3 flex-wrap">
+                                <span class="text-sm font-black text-rose-500 bg-rose-50 px-3 py-1.5 rounded-xl">CÂU ${idx + 1}</span>
+                                ${q.hasGame ? `<span class="text-xs font-black text-indigo-600 bg-indigo-50 px-3 py-1.5 rounded-xl flex items-center gap-1 cursor-pointer hover:bg-indigo-100" onclick="switchStudyMode('widget')"><i data-lucide="gamepad-2" class="w-4 h-4"></i> Trò Chơi Tương Tác</span>` : ''}
+                            </div>
+                            <!-- Made question font significantly larger -->
+                            <h4 class="text-lg md:text-xl font-extrabold text-slate-800 leading-relaxed">${q.question}</h4>
+                        </div>
+                        
+                        <!-- Mastery toggle -->
+                        <button onclick="toggleQuestionMastery(${currentLesson.id}, ${q.id})" class="w-full md:w-auto px-5 py-3 rounded-2xl border-2 ${isMastered ? 'bg-green-500 text-white border-green-500 hover:bg-green-600 shadow-md' : 'bg-slate-50 text-slate-500 border-slate-200 hover:bg-slate-100'} transition-all self-start flex items-center justify-center gap-2">
+                            <i data-lucide="${isMastered ? 'check-square' : 'square'}" class="w-5 h-5"></i>
+                            <span class="text-sm font-black">Em đã nhớ</span>
+                        </button>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="my-6 border-t border-slate-100"></div>
+
+                    <!-- Answer toggle area -->
+                    <div class="space-y-4">
+                        <button onclick="toggleSingleAnswer(${q.id})" class="text-sm md:text-base font-black text-green-700 bg-green-50 hover:bg-green-100 px-5 py-2.5 rounded-2xl transition-all inline-flex items-center gap-2 border border-green-100">
+                            <i data-lucide="eye" class="w-5 h-5" id="eye-icon-${q.id}"></i> 
+                            <span id="btn-text-${q.id}">Xem đáp án</span>
+                        </button>
+                        
+                        <!-- Made Answer text larger and adjusted spacing -->
+                        <div id="answer-box-${q.id}" class="hidden bg-slate-50/80 p-6 rounded-2xl border-2 border-slate-100 animate-fade-in">
+                            <p class="text-base md:text-lg font-bold text-slate-600 leading-loose whitespace-pre-line">${q.answer}</p>
+                        </div>
+                    </div>
+                `;
+                listContainer.appendChild(card);
+            });
+
+            if (listContainer.children.length === 0) {
+                listContainer.innerHTML = `
+                    <div class="text-center py-12 space-y-3">
+                        <i data-lucide="info" class="w-12 h-12 text-slate-300 mx-auto"></i>
+                        <p class="text-base text-slate-400 font-bold">Không tìm thấy câu hỏi nào phù hợp với từ khóa.</p>
+                    </div>
+                `;
+            }
+            tryToUpdateIcons();
+        }
+
+        function filterQuestions() {
+            renderListQuestions();
+        }
+
+        function toggleSingleAnswer(qId) {
+            const answerBox = document.getElementById(`answer-box-${qId}`);
+            const btnText = document.getElementById(`btn-text-${qId}`);
+            const icon = document.getElementById(`eye-icon-${qId}`);
+            
+            if (!answerBox) return;
+            const isHidden = answerBox.classList.contains('hidden');
+            playFlipTone();
+
+            if (isHidden) {
+                answerBox.classList.remove('hidden');
+                if (btnText) btnText.innerText = "Ẩn đáp án";
+                if (icon) icon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                answerBox.classList.add('hidden');
+                if (btnText) btnText.innerText = "Xem đáp án";
+                if (icon) icon.setAttribute('data-lucide', 'eye');
+            }
+            tryToUpdateIcons();
+        }
+
+        function toggleAllAnswers(show) {
+            if (!currentLesson) return;
+            currentLesson.questions.forEach(q => {
+                const answerBox = document.getElementById(`answer-box-${q.id}`);
+                const btnText = document.getElementById(`btn-text-${q.id}`);
+                const icon = document.getElementById(`eye-icon-${q.id}`);
+
+                if (answerBox && btnText && icon) {
+                    if (show) {
+                        answerBox.classList.remove('hidden');
+                        btnText.innerText = "Ẩn đáp án";
+                        icon.setAttribute('data-lucide', 'eye-off');
+                    } else {
+                        answerBox.classList.add('hidden');
+                        btnText.innerText = "Xem đáp án";
+                        icon.setAttribute('data-lucide', 'eye');
+                    }
+                }
+            });
+            tryToUpdateIcons();
+            playSynthBeep(440, 0.1);
+        }
+
+        // ================= MODE 2: FLASHCARD =================
+        function renderFlashcard() {
+            if (!currentLesson) return;
+            const questions = currentLesson.questions;
+            if (!questions || questions.length === 0) return;
+
+            const q = questions[currentCardIndex];
+            const frontText = document.getElementById('card-front-text');
+            const backText = document.getElementById('card-back-text');
+            const frontNum = document.getElementById('card-front-number');
+            const backNum = document.getElementById('card-back-number');
+            const indicator = document.getElementById('card-indicator');
+
+            if (frontText) frontText.innerText = q.question;
+            if (backText) backText.innerText = q.answer;
+            if (frontNum) frontNum.innerText = `CÂU ${currentCardIndex + 1}`;
+            if (backNum) backNum.innerText = `CÂU ${currentCardIndex + 1}`;
+            if (indicator) indicator.innerText = `${currentCardIndex + 1} / ${questions.length}`;
+
+            isFlipped = false;
+            const inner = document.getElementById('flashcard-inner');
+            if (inner) inner.classList.remove('card-flipped');
+        }
+
+        function flipCard() {
+            const inner = document.getElementById('flashcard-inner');
+            if (!inner) return;
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+                inner.classList.add('card-flipped');
+            } else {
+                inner.classList.remove('card-flipped');
+            }
+            playFlipTone();
+        }
+
+        function changeCard(dir) {
+            if (!currentLesson) return;
+            const total = currentLesson.questions.length;
+            currentCardIndex = (currentCardIndex + dir + total) % total;
+            renderFlashcard();
+            playSynthBeep(330, 0.05);
+        }
+
+        function speakCurrentCard() {
+            if (!currentLesson) return;
+            const q = currentLesson.questions[currentCardIndex];
+            if (q) speakText(q.question);
+        }
+
+        // ================= MODE 3: QUIZ =================
+        let quizQuestions = [];
+        let quizIndex = 0;
+        let quizScore = 0;
+
+        function resetQuiz() {
+            quizQuestions = [];
+            quizIndex = 0;
+            quizScore = 0;
+            const intro = document.getElementById('quiz-intro');
+            const gameplay = document.getElementById('quiz-gameplay');
+            const complete = document.getElementById('quiz-complete');
+            if (intro) intro.classList.remove('hidden');
+            if (gameplay) gameplay.classList.add('hidden');
+            if (complete) complete.classList.add('hidden');
+        }
+
+        function startQuizGame() {
+            if (!currentLesson) return;
+            quizQuestions = [...currentLesson.questions].sort(() => Math.random() - 0.5);
+            quizIndex = 0;
+            quizScore = 0;
+
+            const intro = document.getElementById('quiz-intro');
+            const gameplay = document.getElementById('quiz-gameplay');
+            const complete = document.getElementById('quiz-complete');
+            if (intro) intro.classList.add('hidden');
+            if (complete) complete.classList.add('hidden');
+            if (gameplay) gameplay.classList.remove('hidden');
+
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            if (quizIndex >= quizQuestions.length) {
+                showQuizComplete();
+                return;
+            }
+            const q = quizQuestions[quizIndex];
+            const questionText = document.getElementById('quiz-question-text');
+            const questionLbl = document.getElementById('quiz-question-lbl');
+            const scoreLbl = document.getElementById('quiz-score-lbl');
+            const answerZone = document.getElementById('quiz-answer-zone');
+            const revealBtn = document.getElementById('quiz-reveal-btn');
+            const evalBtns = document.getElementById('quiz-eval-buttons');
+
+            if (questionText) questionText.innerText = q.question;
+            if (questionLbl) questionLbl.innerText = `CÂU ${quizIndex + 1}`;
+            if (scoreLbl) scoreLbl.innerText = `Đã nhớ: ${quizScore} / ${quizIndex}`;
+            if (answerZone) answerZone.classList.add('hidden');
+            if (revealBtn) revealBtn.classList.remove('hidden');
+            if (evalBtns) evalBtns.classList.add('hidden');
+        }
+
+        function revealQuizAnswer() {
+            const q = quizQuestions[quizIndex];
+            const answerZone = document.getElementById('quiz-answer-zone');
+            const answerText = document.getElementById('quiz-answer-text');
+            const revealBtn = document.getElementById('quiz-reveal-btn');
+            const evalBtns = document.getElementById('quiz-eval-buttons');
+
+            if (answerText) answerText.innerText = q.answer;
+            if (answerZone) answerZone.classList.remove('hidden');
+            if (revealBtn) revealBtn.classList.add('hidden');
+            if (evalBtns) evalBtns.classList.remove('hidden');
+            playFlipTone();
+        }
+
+        function answerQuizEvaluated(correct) {
+            if (correct) {
+                quizScore++;
+                playSuccessChime();
+                if (!masterProgress[currentLesson.id]) masterProgress[currentLesson.id] = {};
+                masterProgress[currentLesson.id][quizQuestions[quizIndex].id] = true;
+                saveProgress();
+            } else {
+                playSynthBeep(180, 0.2, 'sawtooth');
+            }
+            quizIndex++;
+            showQuizQuestion();
+        }
+
+        function showQuizComplete() {
+            const gameplay = document.getElementById('quiz-gameplay');
+            const complete = document.getElementById('quiz-complete');
+            const finalScore = document.getElementById('quiz-final-score');
+
+            if (gameplay) gameplay.classList.add('hidden');
+            if (complete) complete.classList.remove('hidden');
+            if (finalScore) finalScore.innerText = `${quizScore}/${quizQuestions.length}`;
+            playSuccessChime();
+        }
+
+        // ================= MODE 4: INTERACTIVE WIDGET =================
+        function renderInteractiveWidget() {
+            if (!currentLesson) return;
+            const container = document.getElementById('interactive-widget-content');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const hasGame = currentLesson.questions.some(q => q.hasGame);
+            if (!hasGame) {
+                // Lesson 2: Prayer hand
+                if (currentLesson.id === 2) {
+                    container.appendChild(createHandGameElement());
+                    tryToUpdateIcons();
+                    return;
+                }
+                container.innerHTML = `<div class="text-center py-16 space-y-4">
+                    <p class="text-lg font-extrabold text-slate-400">Bài này chưa có mô hình tương tác đặc biệt.</p>
+                    <p class="text-base text-slate-400">Em hãy dùng Thẻ Ghi Nhớ hoặc Trò Chơi Thử Thách nhé!</p>
+                </div>`;
+                return;
+            }
+
+            // Find game type
+            const gameQ = currentLesson.questions.find(q => q.hasGame);
+            if (gameQ && gameQ.gameType === 'bridge') {
+                container.appendChild(createBridgeGameElement());
+                initBridgeGameLogic();
+            } else if (currentLesson.id === 2) {
+                container.appendChild(createHandGameElement());
+            }
+            tryToUpdateIcons();
+        }
+
+        function startSpecificWidget(type) {
+            // Navigate to the appropriate lesson then open widget tab
+            if (type === 'bridge') {
+                navigateTo('lesson1');
+                setTimeout(() => switchStudyMode('widget'), 100);
+            } else if (type === 'hand') {
+                navigateTo('lesson2');
+                setTimeout(() => switchStudyMode('widget'), 100);
+            }
+        }
+
+        function playVerseAudio(text) {
+            speakText(text);
+        }
+    </script>
+
+    <!-- INTERACTIVE MINI-WIDGETS LOGIC -->
+    <script>
+        // --- LESSON 1: THE SALVATION BRIDGE Drag & Match Game ---
+        function createBridgeGameElement() {
+            const div = document.createElement('div');
+            div.className = "bg-white rounded-[2.5rem] p-8 border-2 border-slate-100 shadow-md space-y-6";
+            div.innerHTML = `
+                <div class="text-center space-y-2">
+                    <h3 class="heading-font text-2xl font-black text-slate-800">Trò Chơi: Ghép Cây Cầu Cứu Rỗi</h3>
+                    <p class="text-sm md:text-base text-slate-500 font-bold">Nhấn vào các mảnh ghép màu xám ở dưới, sau đó nhấn vào vị trí trống phù hợp trên mô hình để lắp ráp nhé!</p>
+                </div>
+
+                <!-- Visual Bridge Graphic - fully responsive dynamic height slots to prevent overlap -->
+                <div class="relative min-h-[18rem] bg-sky-50 rounded-3xl p-6 border-2 border-sky-100 flex flex-col justify-between items-stretch overflow-hidden gap-6">
+                    
+                    <!-- Top Labels Area -->
+                    <div class="flex items-start justify-between gap-4">
+                        <!-- Left Bank (Bờ A) -->
+                        <div id="drop-shoreA" class="w-[45%] bg-amber-100 border-t-4 border-amber-500 rounded-2xl p-4 flex flex-col justify-between items-center text-center gap-3">
+                            <span class="text-xs font-black tracking-widest text-amber-700">BỜ BÊN TRÁI (A)</span>
+                            <div id="slot-shoreA" class="w-full min-h-[4.5rem] py-3 px-2 border-2 border-dashed border-amber-300 rounded-xl flex items-center justify-center bg-white/40 text-xs md:text-sm font-black text-amber-900 cursor-pointer hover:bg-white/80 transition-all">
+                                Nhấp chọn nhãn rồi nhấp đây
+                            </div>
+                        </div>
+
+                        <!-- Right Bank (Bờ B) -->
+                        <div id="drop-shoreB" class="w-[45%] bg-emerald-100 border-t-4 border-emerald-500 rounded-2xl p-4 flex flex-col justify-between items-center text-center gap-3">
+                            <span class="text-xs font-black tracking-widest text-emerald-700">BỜ BÊN PHẢI (B)</span>
+                            <div id="slot-shoreB" class="w-full min-h-[4.5rem] py-3 px-2 border-2 border-dashed border-emerald-300 rounded-xl flex items-center justify-center bg-white/40 text-xs md:text-sm font-black text-emerald-900 cursor-pointer hover:bg-white/80 transition-all">
+                                Nhấp chọn nhãn rồi nhấp đây
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bridge Cross (Thanh Ngang) -->
+                    <div class="w-full py-4 px-4 bg-indigo-50/50 border-t-2 border-indigo-100 rounded-2xl">
+                        <span class="text-xs font-black text-indigo-500 block text-center mb-2 uppercase tracking-wide">Thanh Cầu Nối Ở Giữa</span>
+                        <div id="slot-bridge" class="w-full min-h-[3.5rem] py-3 px-2 border-2 border-dashed border-indigo-400 rounded-xl bg-white/40 text-indigo-900 text-xs md:text-sm font-black flex items-center justify-center cursor-pointer hover:bg-white/80 transition-all">
+                            Nhấp chọn nhãn rồi nhấp đây
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Labels Pool -->
+                <div class="space-y-4 pt-4 border-t border-slate-100">
+                    <span class="text-sm font-extrabold text-slate-500 uppercase tracking-wider block text-center md:text-left">Các mảnh ghép câu trả lời:</span>
+                    <div class="flex flex-wrap gap-3 justify-center" id="bridge-labels-pool">
+                        <!-- Placed dynamically -->
+                    </div>
+                </div>
+
+                <!-- Celebration & Controls -->
+                <div class="flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-slate-100 gap-4">
+                    <span id="bridge-status-lbl" class="text-base font-extrabold text-amber-600 text-center">Đang sẵn sàng! Hãy ghép bài thi.</span>
+                    <button onclick="resetBridgeGame()" class="w-full sm:w-auto bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold px-6 py-3 rounded-2xl text-base transition-all shadow-sm">Bắt đầu lại</button>
+                </div>
+            `;
+            return div;
+        }
+
+        // Bridge dynamic logic
+        let activeBridgeLabels = [];
+        let selectedLabelId = null;
+
+        function initBridgeGameLogic() {
+            resetBridgeGame();
+        }
+
+        function resetBridgeGame() {
+            activeBridgeLabels = [
+                { id: 'l1', text: "CON NGƯỜI, TỘI LỖI", target: 'shoreA' },
+                { id: 'l2', text: "ĐỨC CHÚA TRỜI, THÁNH KHIẾT", target: 'shoreB' },
+                { id: 'l3', text: "CHÚA Jêsus", target: 'bridge' }
+            ].sort(() => Math.random() - 0.5);
+
+            const slotA = document.getElementById('slot-shoreA');
+            const slotB = document.getElementById('slot-shoreB');
+            const slotC = document.getElementById('slot-bridge');
+            const statusLbl = document.getElementById('bridge-status-lbl');
+
+            if (slotA) {
+                slotA.className = "w-full min-h-[4.5rem] py-3 px-2 border-2 border-dashed border-amber-300 rounded-xl flex items-center justify-center bg-white/40 text-xs md:text-sm font-black text-amber-900 cursor-pointer hover:bg-white/80 transition-all text-center";
+                slotA.innerHTML = "Nhấp nhãn ở dưới rồi nhấp đây";
+                slotA.onclick = () => tryPlaceLabel('shoreA');
+            }
+
+            if (slotB) {
+                slotB.className = "w-full min-h-[4.5rem] py-3 px-2 border-2 border-dashed border-emerald-300 rounded-xl flex items-center justify-center bg-white/40 text-xs md:text-sm font-black text-emerald-900 cursor-pointer hover:bg-white/80 transition-all text-center";
+                slotB.innerHTML = "Nhấp nhãn ở dưới rồi nhấp đây";
+                slotB.onclick = () => tryPlaceLabel('shoreB');
+            }
+
+            if (slotC) {
+                slotC.className = "w-full min-h-[3.5rem] py-3 px-2 border-2 border-dashed border-indigo-400 rounded-xl bg-white/40 text-indigo-900 text-xs md:text-sm font-black flex items-center justify-center cursor-pointer hover:bg-white/80 transition-all text-center";
+                slotC.innerHTML = "Nhấp nhãn ở dưới rồi nhấp đây";
+                slotC.onclick = () => tryPlaceLabel('bridge');
+            }
+
+            if (statusLbl) {
+                statusLbl.className = "text-base font-extrabold text-slate-500 text-center";
+                statusLbl.innerText = "Bé ơi, hãy xếp các mảnh ghép vào ô trống nhé!";
+            }
+
+            selectedLabelId = null;
+            renderBridgePool();
+        }
+
+        function renderBridgePool() {
+            const pool = document.getElementById('bridge-labels-pool');
+            if (!pool) return;
+            pool.innerHTML = '';
+            
+            activeBridgeLabels.forEach(label => {
+                const btn = document.createElement('button');
+                btn.id = `label-${label.id}`;
+                btn.className = `px-5 py-3.5 rounded-2xl font-black text-sm md:text-base transition-all shadow-md ${selectedLabelId === label.id ? 'bg-indigo-600 text-white scale-105 ring-4 ring-indigo-100' : 'bg-slate-100 hover:bg-slate-200 text-slate-700'}`;
+                btn.innerText = label.text;
+                btn.onclick = () => {
+                    selectedLabelId = label.id;
+                    renderBridgePool();
+                    playSynthBeep(293.66, 0.05);
+                };
+                pool.appendChild(btn);
+            });
+        }
+
+        function tryPlaceLabel(targetSlot) {
+            if (!selectedLabelId) {
+                playSynthBeep(150, 0.1, 'sawtooth');
+                showCustomAlert("Đầu tiên, em hãy nhấn chọn một nhãn màu xám ở dưới đã nhé!", 'warning');
+                return;
+            }
+
+            const labelObj = activeBridgeLabels.find(l => l.id === selectedLabelId);
+            if (!labelObj) return;
+
+            if (labelObj.target === targetSlot) {
+                playFlipTone();
+                let slotEl;
+                if (targetSlot === 'shoreA') {
+                    slotEl = document.getElementById('slot-shoreA');
+                    if (slotEl) slotEl.className = "w-full min-h-[4.5rem] bg-green-500 text-white rounded-xl flex items-center justify-center text-sm font-black p-2 animate-fade-in text-center";
+                } else if (targetSlot === 'shoreB') {
+                    slotEl = document.getElementById('slot-shoreB');
+                    if (slotEl) slotEl.className = "w-full min-h-[4.5rem] bg-green-500 text-white rounded-xl flex items-center justify-center text-sm font-black p-2 animate-fade-in text-center";
+                } else {
+                    slotEl = document.getElementById('slot-bridge');
+                    if (slotEl) slotEl.className = "w-full min-h-[3.5rem] bg-indigo-600 text-white rounded-xl flex items-center justify-center text-sm font-black p-2 animate-fade-in text-center";
+                }
+                if (slotEl) {
+                    slotEl.innerText = labelObj.text;
+                    slotEl.onclick = null;
+                }
+
+                activeBridgeLabels = activeBridgeLabels.filter(l => l.id !== selectedLabelId);
+                selectedLabelId = null;
+                renderBridgePool();
+
+                if (activeBridgeLabels.length === 0) {
+                    playSuccessChime();
+                    const statusLbl = document.getElementById('bridge-status-lbl');
+                    if (statusLbl) {
+                        statusLbl.className = "text-lg font-black text-green-600 animate-bounce text-center";
+                        statusLbl.innerText = "Tuyệt vời! Em đã hoàn thành xuất sắc mô hình cây cầu!";
+                    }
+                    
+                    if (!masterProgress[currentLesson.id]) masterProgress[currentLesson.id] = {};
+                    masterProgress[currentLesson.id][1] = true;
+                    saveProgress();
+                }
+            } else {
+                playSynthBeep(180, 0.2, 'sawtooth');
+                showCustomAlert("Rất tiếc! Mảnh ghép này chưa nằm đúng vị trí. Em hãy thử lại xem!", 'error');
+            }
+        }
+
+        // --- LESSON 2: PRAYER HAND INTERACTIVE GRAPHIC ---
+        function createHandGameElement() {
+            const div = document.createElement('div');
+            div.className = "bg-white rounded-[2.5rem] p-8 border-2 border-slate-100 shadow-md space-y-6";
+            div.innerHTML = `
+                <div class="text-center space-y-2">
+                    <h3 class="heading-font text-2xl font-black text-slate-800">Bàn Tay Cầu Nguyện Của Em</h3>
+                    <p class="text-sm md:text-base text-slate-500 font-bold">Chạm hoặc click vào các ngón tay để học 5 phần quan trọng khi thưa chuyện cùng Chúa nhé!</p>
+                </div>
+
+                <!-- Visual Hand Graphic with HTML/SVG shapes -->
+                <div class="flex flex-col md:flex-row items-stretch justify-center gap-8 py-4">
+                    
+                    <!-- SVG Interactive Hand -->
+                    <div class="w-64 h-64 md:w-80 md:h-80 relative flex items-center justify-center mx-auto flex-shrink-0">
+                        <svg class="w-full h-full overflow-visible" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Thumb (Ngón cái) -->
+                            <path d="M 45 130 C 25 120 15 100 25 85 C 32 75 48 85 55 95 C 60 102 62 110 65 120 Z" fill="#fde047" stroke="#ca8a04" stroke-width="2.5" class="cursor-pointer hover:opacity-80 transition-opacity" onclick="revealFingerInfo(1)" />
+                            <text x="22" y="105" font-size="9.5" font-family="Quicksand" font-weight="900" fill="#854d0e">1. CA NGỢI</text>
+
+                            <!-- Index Finger (Ngón trỏ) -->
+                            <path d="M 60 120 C 50 80 55 50 65 48 C 75 46 80 75 80 110 Z" fill="#fca5a5" stroke="#dc2626" stroke-width="2.5" class="cursor-pointer hover:opacity-80 transition-opacity" onclick="revealFingerInfo(2)" />
+                            <text x="50" y="38" font-size="9.5" font-family="Quicksand" font-weight="900" fill="#991b1b">2. ĂN NĂN</text>
+
+                            <!-- Middle Finger (Ngón giữa) -->
+                            <path d="M 85 110 C 85 70 90 40 100 40 C 110 40 110 70 110 110 Z" fill="#6ee7b7" stroke="#059669" stroke-width="2.5" class="cursor-pointer hover:opacity-80 transition-opacity" onclick="revealFingerInfo(3)" />
+                            <text x="90" y="30" font-size="9.5" font-family="Quicksand" font-weight="900" fill="#065f46">3. CẢM TẠ</text>
+
+                            <!-- Ring Finger (Ngón áp út) -->
+                            <path d="M 115 110 C 115 75 120 50 130 52 C 140 54 135 85 130 115 Z" fill="#93c5fd" stroke="#2563eb" stroke-width="2.5" class="cursor-pointer hover:opacity-80 transition-opacity" onclick="revealFingerInfo(4)" />
+                            <text x="128" y="44" font-size="9.5" font-family="Quicksand" font-weight="900" fill="#1e40af">4. CẦU THAY</text>
+
+                            <!-- Pinky Finger (Ngón út) -->
+                            <path d="M 135 125 C 145 90 155 75 163 80 C 170 85 155 110 148 132 Z" fill="#c084fc" stroke="#9333ea" stroke-width="2.5" class="cursor-pointer hover:opacity-80 transition-opacity" onclick="revealFingerInfo(5)" />
+                            <text x="156" y="73" font-size="9.5" font-family="Quicksand" font-weight="900" fill="#6b21a8">5. CẦU XIN</text>
+
+                            <!-- Palm of the Hand -->
+                            <path d="M 60 120 L 80 110 L 110 110 L 130 115 L 148 132 C 150 150 140 180 105 180 C 70 180 58 150 60 120 Z" fill="#f8fafc" stroke="#64748b" stroke-width="3" />
+                            <text x="82" y="148" font-size="11" font-family="Baloo 2" font-weight="800" fill="#475569">BÀN TAY</text>
+                            <text x="76" y="162" font-size="10" font-family="Quicksand" font-weight="800" fill="#475569">CẦU NGUYỆN</text>
+                        </svg>
+                    </div>
+
+                    <!-- Side Info Box - flexible sizing prevents text overlap completely -->
+                    <div id="finger-info-box" class="flex-grow w-full bg-slate-50 border-2 border-slate-150 rounded-3xl p-6 flex flex-col justify-center text-center md:text-left min-h-[14rem] transition-all">
+                        <div class="space-y-3">
+                            <i data-lucide="info" class="w-10 h-10 text-indigo-500 mx-auto md:mx-0"></i>
+                            <h4 class="font-extrabold text-slate-800 text-lg">Hướng dẫn:</h4>
+                            <p class="text-base text-slate-600 leading-relaxed">Em hãy nhấn trực tiếp vào một ngón tay bất kỳ trên hình minh họa bên cạnh để khám phá ý nghĩa và bài học cầu nguyện tuyệt vời nhé!</p>
+                        </div>
+                    </div>
+
+                </div>
+            `;
+            return div;
+        }
+
+        function revealFingerInfo(fingerNum) {
+            playFlipTone();
+            const box = document.getElementById('finger-info-box');
+            if (!box) return;
+            const details = fingerDetails[fingerNum];
+
+            box.className = `flex-grow w-full border-2 rounded-3xl p-6 flex flex-col justify-center text-center md:text-left min-h-[14rem] animate-fade-in ${details.color}`;
+            box.innerHTML = `
+                <div class="space-y-3">
+                    <span class="text-xs font-black tracking-widest uppercase opacity-75">Chi tiết ngón tay cầu nguyện</span>
+                    <h4 class="font-black text-lg md:text-xl heading-font leading-snug">${details.title}</h4>
+                    <p class="text-base font-bold leading-relaxed">${details.desc}</p>
+                    <button onclick="speakText('${details.title}. ${details.desc}')" class="text-sm font-extrabold underline cursor-pointer mt-3 flex items-center justify-center md:justify-start gap-1.5 hover:opacity-85">
+                        <i data-lucide="volume-2" class="w-5 h-5"></i> Nghe đọc to
+                    </button>
+                </div>
+            `;
+            tryToUpdateIcons();
+
+            if (!masterProgress[2]) masterProgress[2] = {};
+            if (!window.viewedFingers) window.viewedFingers = new Set();
+            window.viewedFingers.add(fingerNum);
+            if (window.viewedFingers.size === 5) {
+                playSuccessChime();
+                masterProgress[2][3] = true;
+                saveProgress();
+            }
+        }
+
+        // Helper function safely rendering lucide icons
+        function tryToUpdateIcons() {
+            try {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+            } catch (e) {
+                console.warn("Lucide rendering safely bypassed.");
+            }
+        }
+    </script>
+
+    <script>
+        // Start app safely on window load
+        window.onload = function () {
+            try {
+                initProgress();
+                navigateTo('home');
+                tryToUpdateIcons();
+            } catch (e) {
+                console.error("Critical error on app initialization:", e);
+            }
+        }
+    </script>
+</body>
+</html>
